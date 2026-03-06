@@ -1,0 +1,10 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# AWS private keys
+*.pem
+
+# OS files
+.DS_Store
