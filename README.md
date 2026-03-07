@@ -151,7 +151,7 @@ terraform_portfolio
 
 ## Learning Outcomes
 
-By completing these projects, you will gain experience in:
+By completing these projects, I have gain experience in:
 
 - Writing Terraform configurations for different providers
 - Automating containerized and cloud infrastructure
