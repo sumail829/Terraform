@@ -60,6 +60,86 @@ terraform destroy
 
 ---
 
+### Ansible Automation
+
+Automated infrastructure configuration using Ansible playbooks.
+
+**Features**
+- Automated web server setup
+- Docker container deployment
+- Kubernetes cluster setup using Kind
+- Infrastructure configuration using YAML playbooks
+
+**Tech Used**
+- Ansible
+- Docker
+- Kubernetes
+- YAML
+
+
+# Kubernetes Deployment
+
+Kubernetes is used for container orchestration and scalable application deployment.
+
+## Kubernetes Components
+
+- Backend Deployment and Service
+- Frontend Deployment and Service
+- PostgreSQL Deployment and Service
+
+## Kubernetes Manifests
+
+- backend.yaml
+- backend-service.yaml
+- frontend.yaml
+- frontend-service.yaml
+- postgres.yaml
+- postgres-service.yaml
+
+## Local Cluster
+
+A local Kubernetes cluster is created using **Kind (Kubernetes in Docker)**.
+
+Configuration file:
+# Infrastructure Workflow
+Terraform → AWS Infrastructure
+
+Ansible → Server Configuration
+
+Docker → Containerization
+
+Kubernetes → Container Orchestration
+
+
+
+**Project Structure**
+terraform_portfolio
+│
+├── terraform_aws
+│ ├── provider.tf
+│ ├── vpc.tf
+│ ├── vm.tf
+│ ├── key.tf
+│ ├── cloudfare.tf
+│ └── output.tf
+│
+├── ansible-training
+│ ├── ansible.cfg
+│ ├── inventory
+│ │ └── inventory.ini
+│ ├── setup.yaml
+│ ├── setup-webserver.yaml
+│ ├── setup-kubernates.yaml
+│ ├── docker-compose.yaml
+│ ├── kind-config.yaml
+│ │
+│ └── kubernetes
+│ ├── backend.yaml
+│ ├── backend-service.yaml
+│ ├── frontend.yaml
+│ ├── frontend-service.yaml
+│ ├── postgres.yaml
+│ └── postgres-service.yaml
 ## Technologies Used
 
 - Terraform (IaC)
@@ -78,6 +158,19 @@ By completing these projects, you will gain experience in:
 - Infrastructure versioning and reproducibility
 - Secure access management (SSH keys, environment variables)
 - Networking basics (ports, VPC, subnets, security groups)
+
+---
+# Security
+
+Sensitive files are excluded from the repository using `.gitignore`.
+
+Ignored files include:
+
+- `.env`
+- `*.tfvars`
+- `*.pem`
+- `terraform.tfstate`
+- `.terraform`
 
 ---
 
