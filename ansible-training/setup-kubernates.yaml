@@ -1,0 +1,14 @@
+- name: setup kubernates
+  hosts: vm
+  become: yes
+
+  tasks:
+   - name: copy kind cofig to server
+     copy: 
+      src: ./kind-config.yaml
+      dest: /home/ubuntu/
+
+   - name: run application using kind 
+     ansible.builtin.shell:  kind create cluster --config kind-config.yaml
+     args:
+      chdir: /home/ubuntu/

@@ -1,0 +1,30 @@
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+
+# Keys
+*.pem
+*.key
+
+# Environment files
+.env
+.env.*
+
+# Ansible
+*.retry
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Node (if you add later)
+node_modules/

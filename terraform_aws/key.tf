@@ -10,6 +10,6 @@ resource "aws_key_pair" "samir_key" {
 
 resource "local_file" "private_key" {
   content         = tls_private_key.rsa_4096_samir.private_key_pem
-  filename        = "${path.module}/samir.pem" //path.module = current directry
+  filename        = "${path.module}/../ansible-training/samir.pem" //path.module = current directry
   file_permission = "0400"
 }

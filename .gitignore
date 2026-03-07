@@ -1,10 +1,27 @@
-# Terraform state files
-*.tfstate
-*.tfstate.backup
+# Terraform
 .terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvar
+.terraform.lock.hcl
 
-# AWS private keys
+# Secrets
+.env
+.env.*
 *.pem
+*.key
 
-# OS files
+# Binaries
+terraform
+
+# Logs
+*.log
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

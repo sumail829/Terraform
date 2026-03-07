@@ -12,10 +12,22 @@ terraform {
       source  = "hashicorp/local"
       version = "2.7.0"
     }
+    null = {
+      source = "hashicorp/null"
+      version = "3.2.4"
+    }  // ansible ma handoff garna lai null chaiyo
+    cloudflare = {
+      source = "cloudflare/cloudflare" //domain name automatically update garna lai
+      version = "5.17.0"
+    }
   }
 }
 
 provider "aws" {
   region = "us-east-1"
+}
+
+provider "cloudflare" {
+  api_token = var.CLOUDFLARE_API_TOKEN
 }
 

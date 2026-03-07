@@ -1,0 +1,47 @@
+- name: setup webserver
+  hosts: aws
+  become: yes
+
+  tasks:
+    - name: install nginx webserver
+      apt: 
+        name: nginx
+        state: present
+
+    - name: ensure nginx is started
+      service:
+          name: nginx
+          state: started
+          enabled: yes
+    
+    - name: Copy nginx conf file to remote host
+      copy:
+        src: ./samir.conf
+        dest: /etc/nginx/conf.d/
+
+    - name: Copy nginx conf file to remote host
+      copy:
+        src: ./samir-api.conf
+        dest: /etc/nginx/conf.d/
+    
+    - name: Copy nginx conf file to remote host
+      copy:
+        src: ./suman.conf
+        dest: /etc/nginx/conf.d/
+
+    - name: ensure nginx is reloded
+      service:
+          name: nginx
+          state: reloaded
+          enabled: yes
+
+    - name: copy docker-come.yaml
+      copy:
+        src: ./docker-compose.yaml
+        dest: /home/ubuntu/samir_youtube/
+      
+    - name: run application using docker compose
+      ansible.builtin.shell:  docker compose up -d 
+      args:
+        chdir: /home/ubuntu/samir_youtube/
+          

@@ -1,0 +1,45 @@
+services:
+  frontend:
+    image: sumail829/youtube-front:latest
+    container_name: youtubefrontend
+    # build:
+    #   context: ./frontend
+      # args:
+      #   VITE_API_URL: http://localhost:9001/api
+    ports:
+      - "4044:80"
+    depends_on:
+      - backend
+
+
+
+  backend:
+    image: sumail829/youtube-back:latest
+    container_name: youtubebackend
+    # build:
+    #   context: ./backend
+    ports:
+      - "9002:5000"
+    environment:
+      MONGO_URI: "mongodb://mongo:27017/youtubedb"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    
+  mongo:
+    image: mongo:7
+    container_name: youtubedb
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: youtubedb
+    volumes:
+    - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+volumes:
+    mongo_data:

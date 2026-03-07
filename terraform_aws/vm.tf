@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   filter {
@@ -21,7 +21,7 @@ resource "aws_instance" "samir" {
   key_name      = aws_key_pair.samir_key.key_name
 
   vpc_security_group_ids = [aws_security_group.samir_sg.id]
-
+  associate_public_ip_address = true
   tags = {
     Name = "samir"
   }
@@ -36,6 +36,12 @@ resource "aws_security_group" "samir_sg" {
     to_port     = 22
     protocol    = "tcp"
   }
+    ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0
@@ -45,6 +51,16 @@ resource "aws_security_group" "samir_sg" {
   }
   tags = {
     Name = "samir_sg"
+  }
+}
+
+resource "null_resource" "run_ansible" {
+  depends_on = [
+    aws_instance.samir
+  ]
+  provisioner "local-exec" {
+    command     = "ansible-playbook setup.yaml"
+    working_dir = "../ansible-training"
   }
 }
 
