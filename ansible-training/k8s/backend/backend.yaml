@@ -22,3 +22,6 @@ spec:
         env: 
         - name: DATABASE_URL
           value: "postgresql+asyncpg://samir:postgres@postgres:5432/contact_db"
+        command: ["sh", "-c"]
+        args:
+          - sleep 10 && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000

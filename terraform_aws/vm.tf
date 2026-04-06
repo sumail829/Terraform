@@ -19,6 +19,9 @@ resource "aws_instance" "samir" {
   instance_type = "t3.medium"
   subnet_id     = aws_subnet.main.id
   key_name      = aws_key_pair.samir_key.key_name
+  root_block_device {
+    volume_size = 32
+  }
 
   vpc_security_group_ids = [aws_security_group.samir_sg.id]
   associate_public_ip_address = true
